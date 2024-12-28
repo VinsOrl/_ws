@@ -1,5 +1,5 @@
 # Assignment 2 - Add post time to the blog program
-資工二 林新興
+資工二 林新興 111210556
 
 ---
 # About homework
@@ -10,5 +10,5 @@ For the post created later, you can use the time function left by the teacher at
 
 # Reference materials and teaching materials
 
-[app.js version](https://github.com/ccc113a/html2denojs/blob/master/02-%E5%BE%8C%E7%AB%AF/04b-formBlog/blog/%E8%A8% BB%E8%A7%A3%E7%89%88/app.js)
-[render.js version](https://github.com/ccc113a/html2denojs/blob/master/02-%E5%BE%8C%E7%AB%AF/04b-formBlog/blog/%E8%A8% BB%E8%A7%A3%E7%89%88/render.js)
+[app.js version](https://github.com/VinsOrl/_ws/blob/master/hw2/app.js)
+[render.js version](https://github.com/VinsOrl/_ws/blob/master/hw2/render.js)
