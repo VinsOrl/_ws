@@ -1,4 +1,4 @@
-let users = []; // To store users (In a real app, this would be a database)
+let users = [];
 let currentUser = null;
 let gameCanvas = null;
 let ctx = null;
@@ -24,14 +24,12 @@ function signup() {
     return;
   }
 
-  // Check if username already exists
   const existingUser = users.find((user) => user.username === username);
   if (existingUser) {
     alert("Username already exists. Please choose another.");
     return;
   }
 
-  // Add user to the list
   users.push({ username, password });
   alert("Sign up successful! You can now log in.");
   showLogin();
@@ -46,7 +44,6 @@ function login() {
     return;
   }
 
-  // Check if the username and password match
   const user = users.find(
     (user) => user.username === username && user.password === password
   );
@@ -54,13 +51,10 @@ function login() {
     currentUser = user;
     alert(`Welcome, ${username}!`);
 
-    // Hide the login and signup forms
     document.getElementById("auth-container").style.display = "none";
 
-    // Show the game container
     document.getElementById("game-container").style.display = "block";
 
-    // Start the game
     startGame();
   } else {
     alert("Incorrect username or password.");
@@ -70,7 +64,6 @@ function login() {
 function startGame() {
   alert("Starting the Flappy Bird Game!");
 
-  // Create canvas if it doesn't exist
   if (!gameCanvas) {
     gameCanvas = document.createElement("canvas");
     gameCanvas.width = 400;
@@ -88,18 +81,16 @@ function startGame() {
     velocity: 0,
     gravity: 0.6,
     lift: -10,
-  }; // lift dikurangi
+  };
   const pipes = [];
   let score = 0;
   let gameOver = false;
 
-  // Function to draw the bird
   function drawBird() {
     ctx.fillStyle = "yellow";
     ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
   }
 
-  // Function to draw pipes
   function drawPipes() {
     pipes.forEach((pipe) => {
       ctx.fillStyle = "green";
@@ -113,7 +104,6 @@ function startGame() {
     });
   }
 
-  // Function to move the bird
   function moveBird() {
     bird.velocity += bird.gravity;
     bird.y += bird.velocity;
@@ -130,36 +120,31 @@ function startGame() {
     drawBird();
   }
 
-  // Function to create and move pipes
   function movePipes() {
     if (Math.random() < 0.02) {
-      // Menentukan tinggi acak untuk pipa atas
       const pipeHeight = Math.floor(Math.random() * 200) + 120;
-
-      // Menentukan jarak minimal antar pipa atas dan bawah
-      const minGap = 200; // Jarak minimal antar pipa atas dan bawah
+      const minGap = 200;
       const gap = Math.max(
         minGap,
         Math.floor(Math.random() * (gameCanvas.height - minGap))
-      ); // Gap minimum
+      );
 
       pipes.push({
         x: gameCanvas.width,
         topHeight: pipeHeight,
         gap: gap,
         width: 30,
-      }); // Pastikan lebar tiang selalu 30
+      });
     }
 
     pipes.forEach((pipe) => {
-      pipe.x -= 2; // Kecepatan gerakan tiang
+      pipe.x -= 2;
     });
 
-    pipes.filter((pipe) => pipe.x + pipe.width > 0); // Hapus tiang yang sudah keluar dari layar
+    pipes.filter((pipe) => pipe.x + pipe.width > 0);
     drawPipes();
   }
 
-  // Function to check collisions
   function checkCollisions() {
     pipes.forEach((pipe) => {
       if (bird.x + bird.width > pipe.x && bird.x < pipe.x + pipe.width) {
@@ -196,12 +181,10 @@ function startGame() {
     }
   }
 
-  // Event listener to make the bird flap
   window.addEventListener("keydown", () => {
     bird.velocity = bird.lift;
   });
 
-  // Update the game every frame
   function update() {
     if (gameOver) return;
 
